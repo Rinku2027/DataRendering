@@ -2,16 +2,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
 import java.util.Arrays;
 import java.util.List;
-
 import static org.mockito.Mockito.*;
-
 public class UserControllerTest {
     @Mock
     private UserService userService;
-
     @InjectMocks
     private UserController userController;
 
@@ -21,20 +17,16 @@ public class UserControllerTest {
 
     @Test
     public void testGetUsers() {
-        // Mock the userService to return a list of users
         List<User> mockUsers = Arrays.asList(
             new User("John", "Doe"),
             new User("Jane", "Smith")
         );
         when(userService.getAllUsers()).thenReturn(mockUsers);
 
-        // Call the getUsers method in the userController
         List<User> users = userController.getUsers();
 
-        // Verify that the userService.getAllUsers() was called once
         verify(userService, times(1)).getAllUsers();
 
-        // Verify that the returned list of users matches the expected mockUsers
         assertEquals(mockUsers, users);
     }
 }
